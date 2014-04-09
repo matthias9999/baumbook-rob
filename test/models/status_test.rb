@@ -1,21 +1,24 @@
 require 'test_helper'
 
 class StatusTest < ActiveSupport::TestCase
-	test "status should require content" do
+  test "that a status requires content" do
     status = Status.new
-    assert !status.save
-    assert !status.errors[:content].empty?   
-	end
-
-  test "status' content is at least 2 long" do
-    status = Status.new(content: '1')
     assert !status.save
     assert !status.errors[:content].empty?
   end
 
-  test "status' should have a user id" do
-    status = Status.new(content: "Hello")
+  test "that a status's content is at least 2 letters" do
+    status = Status.new
+    status.content = "H"
     assert !status.save
-    assert !status.errors[:user].empty?
+    assert !status.errors[:content].empty?
+  end 
+
+  test "that a status has a user id" do
+    status = Status.new
+    status.content = "Hello"
+
+    assert !status.save
+    assert !status.errors[:user_id].empty?
   end
 end
