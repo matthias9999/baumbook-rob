@@ -15,5 +15,8 @@
 /log/*.log
 /tmp
 
+# now assets on git
+/public/system
+
 #Ignore DSStore
 .DS_Store
